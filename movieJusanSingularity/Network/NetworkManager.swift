@@ -39,7 +39,7 @@ final class NetworkManager {
 		return components
 	}()
 	
-	func fetchMovie(theme: String, completion: @escaping([MovieResult])->()) {
+	func fetchMovie(theme: String, completion: @escaping(APIResult<[MovieResult]>)->()) {
 		
 		var components = urlComponents
 		components.path = "/3/movie/\(theme)"
@@ -67,11 +67,11 @@ final class NetworkManager {
 			do {
 				let movie = try JSONDecoder().decode(Movie.self, from: data)
 				DispatchQueue.main.async {
-					completion(movie.results)
+					completion(.success(movie.results))
 				}
 			} catch {
 				DispatchQueue.main.async {
-					completion([])
+					completion(.failure(.unknown))
 				}
 			}
 		}

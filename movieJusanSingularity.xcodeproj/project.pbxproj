@@ -63,6 +63,7 @@
 		83F347F62B322D7000C742F9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 83F347F52B322D7000C742F9 /* SDWebImage */; };
 		83F347F82B322D7000C742F9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 83F347F72B322D7000C742F9 /* SDWebImageMapKit */; };
 		83F6D1322B7F6B37009401D7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6D1312B7F6B37009401D7 /* Search.swift */; };
+		83F6D1382B835E3E009401D7 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6D1372B835E3E009401D7 /* EmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +128,7 @@
 		83F347F02B321A9B00C742F9 /* Data+PrettyJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+PrettyJson.swift"; sourceTree = "<group>"; };
 		83F347F22B321AE100C742F9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		83F6D1312B7F6B37009401D7 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		83F6D1372B835E3E009401D7 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				83BB86392B51329B00FE2D95 /* LoadingView.swift */,
+				83F6D1372B835E3E009401D7 /* EmptyStateView.swift */,
 			);
 			path = ActivityIndicators;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				83BB86612B52706500FE2D95 /* movieJusanSingularity.xcdatamodeld in Sources */,
 				83E362422B62A2EF0080D1F8 /* APIResult.swift in Sources */,
 				83C5F6642B31FF660021D3BB /* Movie.swift in Sources */,
+				83F6D1382B835E3E009401D7 /* EmptyStateView.swift in Sources */,
 				833633362B3D3A19001DCE08 /* Images.swift in Sources */,
 				83BB86282B5061F600FE2D95 /* GaleryCollectionViewCell.swift in Sources */,
 				83BB86702B52772700FE2D95 /* LoginViewController.swift in Sources */,

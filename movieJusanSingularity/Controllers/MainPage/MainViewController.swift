@@ -120,7 +120,20 @@ final class MainViewController: UIViewController {
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.registerCell(MovieTableViewCell.self)
+		tableView.refreshControl = self.refreshControl
 		return tableView
+	}()
+	
+	private lazy var emptyStateView: EmptyStateView = {
+		let view = EmptyStateView()
+		view.isHidden = true
+		return view
+	}()
+	
+	private lazy var refreshControl: UIRefreshControl = {
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+		return refreshControl
 	}()
 	
 	// MARK: - Lifecycle
@@ -161,6 +174,11 @@ final class MainViewController: UIViewController {
 		hideOrShowGenres()
 	}
 	
+	@objc
+	private func didRefresh() {
+		loadMovies(theme: .nowPlaying, genre: genres.first!)
+	}
+		
 	// MARK: - Setup Views
 	private func setupViews() {
 		view.backgroundColor = .white
@@ -169,9 +187,11 @@ final class MainViewController: UIViewController {
 			view.addSubview($0)
 		}
 		
-		[themeTitleLabel, themeCollectionView, genreStack, movieTableView].forEach {
+		[themeTitleLabel, themeCollectionView, genreStack, movieTableView, emptyStateView].forEach {
 			containerView.addSubview($0)
 		}
+		
+		containerView.bringSubviewToFront(movieTableView)
 		
 		[genreTitleStack, genresCollectionView].forEach {
 			genreStack.addArrangedSubview($0)
@@ -217,15 +237,28 @@ final class MainViewController: UIViewController {
 		
 		movieTableView.snp.makeConstraints { make in
 			make.top.equalTo(genreStack.snp.bottom).offset(4)
-			make.leading.trailing.bottom.equalToSuperview()
+			make.leading.trailing.equalToSuperview()
+			make.bottom.equalTo(view.safeAreaLayoutGuide)
+		}
+		
+		emptyStateView.snp.makeConstraints { make in
+			make.edges.equalTo(movieTableView)
 		}
 	}
 	
 	// MARK: - Private
 	private func loadMovies(theme: Themes, genre: Genre) {
-		networkManager.fetchMovie(theme: theme.urlPath) { [weak self] movies in
-			self?.allMovies = movies
-			self?.movie = movies
+		networkManager.fetchMovie(theme: theme.urlPath) { [weak self] result in
+			self?.refreshControl.endRefreshing()
+			switch result {
+				
+			case .success(let movies):
+				self?.allMovies = movies
+				self?.movie = movies
+				self?.hundleEmptyStateView(show: false)
+			case .failure(_):
+				self?.hundleEmptyStateView(show: true)
+			}
 		}
 	}
 	
@@ -302,6 +335,10 @@ final class MainViewController: UIViewController {
 		} catch let error as NSError {
 			print("Could not save. Error \(error)")
 		}
+	}
+	
+	private func hundleEmptyStateView(show: Bool) {
+		emptyStateView.isHidden = !show
 	}
 	
 	private func animate() {

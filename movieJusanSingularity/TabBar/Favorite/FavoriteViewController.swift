@@ -37,6 +37,13 @@ final class FavoriteViewController: UIViewController {
 		return tableView
 	}()
 	
+	private lazy var emptyStateView: EmptyStateView = {
+		let view = EmptyStateView()
+		view.isHidden = true
+		view.configure(image: UIImage(named: "favourites_empty")!, title: "No Favourites", subtitle: "You haven’t liked any items yet.")
+		return view
+	}()
+	
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -47,6 +54,15 @@ final class FavoriteViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		loadMovies()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if favouriteMovies.count <= 0 {
+			hundleEmptyStateView(show: true)
+		} else {
+			hundleEmptyStateView(show: false)
+		}
 	}
 	
 	// MARK: - Core
@@ -67,7 +83,7 @@ final class FavoriteViewController: UIViewController {
 	private func setupViews() {
 		view.backgroundColor = .white
 		
-		[titleLabel, movieTableView].forEach {
+		[titleLabel, movieTableView, emptyStateView].forEach {
 			view.addSubview($0)
 		}
 	}
@@ -84,6 +100,16 @@ final class FavoriteViewController: UIViewController {
 			make.top.equalTo(titleLabel.snp.bottom).offset(16)
 			make.leading.trailing.bottom.equalToSuperview()
 		}
+		
+		emptyStateView.snp.makeConstraints { make in
+			make.edges.equalTo(view)
+		}
+	}
+	
+	// MARK: - Private
+	
+	private func hundleEmptyStateView(show: Bool) {
+		emptyStateView.isHidden = !show
 	}
 }
 // MARK: - UITableViewDataSource

@@ -36,6 +36,15 @@ final class WatchListViewController: UIViewController {
 		return tableView
 	}()
 	
+	private lazy var emptyStateView: EmptyStateView = {
+		let view = EmptyStateView()
+		view.isHidden = true
+		view.configure(image: UIImage(named: "watch_list_empty")!,
+									 title: "Watch List Is Empty",
+									 subtitle: "You haven’t added any movie yet.")
+		return view
+	}()
+	
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -47,6 +56,15 @@ final class WatchListViewController: UIViewController {
 		super.viewWillAppear(animated)
 		loadMovies()
 		self.tabBarController?.tabBar.isHidden = false
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if moviesFromWatchList.count <= 0 {
+			hundleEmptyStateView(show: true)
+		} else {
+			hundleEmptyStateView(show: false)
+		}
 	}
 	
 	// MARK: - Core
@@ -62,11 +80,17 @@ final class WatchListViewController: UIViewController {
 		}
 	}
 	
+	// MARK: - Private
+	
+	private func hundleEmptyStateView(show: Bool) {
+		emptyStateView.isHidden = !show
+	}
+	
 	// MARK: - Setup Views
 	private func setupViews() {
 		view.backgroundColor = .white
 		
-		[titleLabel, movieTableView].forEach {
+		[titleLabel, movieTableView, emptyStateView].forEach {
 			view.addSubview($0)
 		}
 	}
@@ -82,6 +106,10 @@ final class WatchListViewController: UIViewController {
 		movieTableView.snp.makeConstraints { make in
 			make.top.equalTo(titleLabel.snp.bottom).offset(16)
 			make.leading.trailing.bottom.equalToSuperview()
+		}
+		
+		emptyStateView.snp.makeConstraints { make in
+			make.edges.equalTo(view)
 		}
 	}
 }

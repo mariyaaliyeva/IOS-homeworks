@@ -15,6 +15,7 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 	private var searchMovies: [SearchResult] = [] {
 		didSet {
 			self.movieTableView.reloadData()
+			hundleEmptyStateView(show: false)
 		}
 	}
 	
@@ -44,18 +45,26 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 		return tableView
 	}()
 	
+	private lazy var emptyStateView: EmptyStateView = {
+		let view = EmptyStateView()
+		view.configure(image: UIImage(named: "search_empty")!,
+									 title: "Not Found",
+									 subtitle: "")
+		return view
+	}()
+	
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupViews()
 		setupConstraints()
 	}
-
+	
 	// MARK: - Setup Views
 	private func setupViews() {
 		view.backgroundColor = .white
 		
-		[titleLabel, searchBar, movieTableView].forEach {
+		[titleLabel, searchBar, movieTableView, emptyStateView].forEach {
 			view.addSubview($0)
 		}
 	}
@@ -77,6 +86,15 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 			make.top.equalTo(searchBar.snp.bottom).offset(48)
 			make.leading.trailing.bottom.equalToSuperview()
 		}
+		
+		emptyStateView.snp.makeConstraints { make in
+			make.edges.equalTo(movieTableView)
+		}
+	}
+	// MARK: - Private
+	
+	private func hundleEmptyStateView(show: Bool) {
+		emptyStateView.isHidden = !show
 	}
 }
 
@@ -87,8 +105,11 @@ extension SearchViewController: UISearchBarDelegate {
 		
 		guard let query = searchBar.text,
 					!query.trimmingCharacters(in: .whitespaces).isEmpty,
-					query.trimmingCharacters(in: .whitespaces).count >= 3
-		else {return}
+					query.trimmingCharacters(in: .whitespaces).count >= 2
+		else {
+			hundleEmptyStateView(show: true)
+			return
+		}
 		
 		networkManager.searchMovie(with: query) { [weak self] result in
 			self?.searchMovies = result
