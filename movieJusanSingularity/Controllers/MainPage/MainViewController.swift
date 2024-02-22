@@ -255,6 +255,7 @@ final class MainViewController: UIViewController {
 			case .success(let movies):
 				self?.allMovies = movies
 				self?.movie = movies
+				UserDefaults.standard.setValue(movies.first?.id, forKey: "movieFromMainvc")
 				self?.hundleEmptyStateView(show: false)
 			case .failure(_):
 				self?.hundleEmptyStateView(show: true)
@@ -458,6 +459,7 @@ extension MainViewController: UITableViewDelegate {
 		let movieDetailsController = DetailViewController()
 		let movie = movie[indexPath.row]
 		movieDetailsController.movieID = movie.id
+		print(movie.id)
 		self.navigationController?.pushViewController(movieDetailsController, animated: true)
 	}
 }

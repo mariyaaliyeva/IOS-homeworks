@@ -1,5 +1,5 @@
 //
-//  ForYouViewController.swift
+//  WatchListViewController.swift
 //  movieJusanSingularity
 //
 //  Created by Mariya Aliyeva on 13.01.2024.
@@ -75,6 +75,7 @@ final class WatchListViewController: UIViewController {
 		let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WatchListMovie")
 		do {
 			moviesFromWatchList = try managedContext.fetch(fetchRequest)
+			UserDefaults.standard.setValue(moviesFromWatchList.last?.value(forKeyPath: "id") as? Int, forKey: "moviesFromWatchList")
 		} catch let error as NSError {
 			print("Could not fetch. Error: \(error)")
 		}

@@ -537,7 +537,7 @@ final class NetworkManager {
 		}
 	}
 	
-	func searchMovie(with query: String, completion: @escaping ([SearchResult]) -> Void) {
+	func searchMovie(with query: String, completion: @escaping (APIResult<[SearchResult]>) -> Void) {
 		var components = urlComponents
 		components.path = "/3/search/movie"
 		
@@ -552,7 +552,7 @@ final class NetworkManager {
 		}
 		var requestHeaders = headers
 		requestHeaders["Content-Type"] = "application/json"
-
+		
 		AF.request(requestUrl, headers: requestHeaders).responseData { response in
 			guard let data = response.data else {
 				print("Error: Did not receive data")
@@ -562,13 +562,55 @@ final class NetworkManager {
 			do {
 				let searchResult = try JSONDecoder().decode(Search.self, from: data)
 				DispatchQueue.main.async {
-					completion(searchResult.results)
+					completion(.success(searchResult.results))
 				}
 			} catch {
 				DispatchQueue.main.async {
-					completion([])
+					completion(.failure(.unknown))
 				}
 			}
 		}
+	}
+	
+	func recomendedMovie(movieId: Int, completion: @escaping ([RecommendedMovie]) -> Void) {
+		
+		var components = urlComponents
+		components.path = "/3/movie/\(movieId)/recommendations"
+	
+		guard let requestUrl = components.url else {
+			return
+		}
+		var request = URLRequest(url: requestUrl)
+		
+		request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YzIyYzEwNjdjZWM3OWRlMDgyODg5Mjg5NGUzMWJkYyIsInN1YiI6IjY1YjIzYzE3MGYyZmJkMDEzMDY2YTBiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Mp_XUBq4oK4yBkE0QWgpQE-uhK_5ayYAdfjJPRkVyv0", forHTTPHeaderField: "Authorization")
+		
+		let task = URLSession.shared.dataTask(with: requestUrl) { data, response, error in
+			guard error == nil else {
+				print("Error: error calling GET")
+				return
+			}
+			
+			guard let data else {
+				print("Error: Did not recieve data")
+				return
+			}
+			
+			guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+				print("Error: HTTP request failed")
+				return
+			}
+
+			do {
+				let recomendedMovie = try JSONDecoder().decode(Recommended.self, from: data)
+				DispatchQueue.main.async {
+					completion(recomendedMovie.results)
+				}
+			} catch {
+				DispatchQueue.main.async {
+					print(error)
+				}
+			}
+		}
+		task.resume()
 	}
 }

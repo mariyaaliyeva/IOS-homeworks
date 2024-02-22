@@ -17,7 +17,7 @@ final class FavoriteViewController: UIViewController {
 			self.movieTableView.reloadData()
 		}
 	}
-	
+
 	// MARK: - UI
 	private var titleLabel: UILabel = {
 		let label = UILabel()
@@ -49,11 +49,13 @@ final class FavoriteViewController: UIViewController {
 		super.viewDidLoad()
 		setupViews()
 		setupConstraints()
+		print(favouriteMovies)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		loadMovies()
+		self.tabBarController?.tabBar.isHidden = false
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +76,7 @@ final class FavoriteViewController: UIViewController {
 		
 		do {
 			favouriteMovies = try managedContext.fetch(fetchRequest)
+			UserDefaults.standard.setValue(favouriteMovies.last?.value(forKeyPath: "id") as? Int, forKey: "favouriteMovies")
 		} catch let error as NSError {
 			print("Could not fetch. Error: \(error)")
 		}
@@ -129,6 +132,7 @@ extension FavoriteViewController: UITableViewDataSource {
 		let isFavoriteMovie = !self.favouriteMovies.filter({
 			($0.value(forKeyPath: "id") as? Int) == movie.value(forKeyPath: "id") as? Int
 		}).isEmpty
+		
 		cell.toggleFavouriteImage(with: isFavoriteMovie)
 		return cell
 	}

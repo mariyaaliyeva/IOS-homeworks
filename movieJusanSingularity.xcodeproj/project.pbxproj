@@ -64,6 +64,7 @@
 		83F347F82B322D7000C742F9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 83F347F72B322D7000C742F9 /* SDWebImageMapKit */; };
 		83F6D1322B7F6B37009401D7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6D1312B7F6B37009401D7 /* Search.swift */; };
 		83F6D1382B835E3E009401D7 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6D1372B835E3E009401D7 /* EmptyStateView.swift */; };
+		83F6D13D2B8479D5009401D7 /* RecommendedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6D13C2B8479D5009401D7 /* RecommendedMovie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,6 +130,7 @@
 		83F347F22B321AE100C742F9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		83F6D1312B7F6B37009401D7 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		83F6D1372B835E3E009401D7 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		83F6D13C2B8479D5009401D7 /* RecommendedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMovie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 				83E3623F2B62A1ED0080D1F8 /* RequestTokenModel.swift */,
 				83E362412B62A2EF0080D1F8 /* APIResult.swift */,
 				83F6D1312B7F6B37009401D7 /* Search.swift */,
+				83F6D13C2B8479D5009401D7 /* RecommendedMovie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				83F347F32B321AE100C742F9 /* NetworkManager.swift in Sources */,
 				83BB86642B52714400FE2D95 /* MainTabBarViewController.swift in Sources */,
 				833632D42B39E4F7001DCE08 /* Video.swift in Sources */,
+				83F6D13D2B8479D5009401D7 /* RecommendedMovie.swift in Sources */,
 				83E362402B62A1ED0080D1F8 /* RequestTokenModel.swift in Sources */,
 				833632D82B39F629001DCE08 /* SocialMedia.swift in Sources */,
 				83BB866C2B52770D00FE2D95 /* FavoriteViewController.swift in Sources */,

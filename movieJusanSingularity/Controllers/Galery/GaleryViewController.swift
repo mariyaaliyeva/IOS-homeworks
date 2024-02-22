@@ -18,17 +18,10 @@ final class GaleryViewController: UIViewController {
 	private lazy var collectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
-		layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 		layout.minimumLineSpacing = 0
 		layout.minimumInteritemSpacing = 0
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collectionView.backgroundColor = .black
-//		collectionView.isPagingEnabled = false
-//		collectionView.scrollToItem(
-//				at: IndexPath(item: 1, section: 0),
-//				at: .centeredHorizontally,
-//				animated: true
-//		)
 		collectionView.isPagingEnabled = true
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.delegate = self
@@ -64,15 +57,13 @@ final class GaleryViewController: UIViewController {
 	// MARK: - ViewDidLayoutSubviews
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		collectionView.isPagingEnabled = false
-		collectionView.scrollToItem(at: IndexPath(item: photoIndexPath, section: 0), at: .centeredHorizontally, animated: true)
+		collectionView.scrollToItem(at: IndexPath(item: photoIndexPath, section: 0), at: .centeredHorizontally, animated: false)
 	}
 	
 	// MARK: - SetupViews
 	private func setupViews() {
 		view.backgroundColor = .black
 		view.addSubview(collectionView)
-		collectionView.isPagingEnabled = true
 	}
 	// MARK: - SetupConstraints
 	private func setupConstraints() {
@@ -105,6 +96,11 @@ extension GaleryViewController: UICollectionViewDelegateFlowLayout, UICollection
 		return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
 	}
 	
+	func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		let y = targetContentOffset.pointee.y
+		_ = Int(y / view.frame.height)
+	}
+
 	func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 		if let collectionView = scrollView as? UICollectionView {
 			let visibleIndexPaths = collectionView.indexPathsForVisibleItems
