@@ -550,10 +550,8 @@ final class NetworkManager {
 		guard let requestUrl = components.url else {
 			return
 		}
-		var requestHeaders = headers
-		requestHeaders["Content-Type"] = "application/json"
-		
-		AF.request(requestUrl, headers: requestHeaders).responseData { response in
+	
+		AF.request(requestUrl, headers: headers).responseData { response in
 			guard let data = response.data else {
 				print("Error: Did not receive data")
 				return

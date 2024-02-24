@@ -17,6 +17,7 @@ final class DetailViewController: BaseViewController {
 	var movieID = Int()
 	var movieImage: String?
 	var movieName: String?
+	var hideDetail: Bool?
 	
 	// MARK: - Private properties
 	private var networkManager = NetworkManager.shared
@@ -309,7 +310,9 @@ final class DetailViewController: BaseViewController {
 
 	private func toggleButton() {
 		
+		loadMoviesFromWatchList()
 		let isFavouriteMovie = !self.watchListMovies.filter({ ($0.value(forKey: "id") as? Int) == self.movieID}).isEmpty
+		
 		if !isFavouriteMovie {
 			addToWatchListButton.backgroundColor = .red
 			addToWatchListButton.setTitle("Remove from Watch List", for: .normal)
@@ -318,7 +321,12 @@ final class DetailViewController: BaseViewController {
 			addToWatchListButton.backgroundColor = #colorLiteral(red: 0.1011425927, green: 0.2329770327, blue: 0.9290834069, alpha: 1)
 			addToWatchListButton.setTitle("Add To Watch List", for: .normal)
 			deleteMoviesFromWatchList(with: movieImage ?? "", movieTitle: movieName ?? "", movieID: movieID)
+			
+			if hideDetail == true {
+				self.navigationController?.popViewController(animated: true)
+			}
 		}
+
 	}
 	
 	// MARK: - Setup Views

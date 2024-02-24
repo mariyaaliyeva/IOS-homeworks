@@ -140,6 +140,7 @@ extension WatchListViewController: UITableViewDelegate {
 		let movie = moviesFromWatchList[indexPath.row]
 		let id = movie.value(forKeyPath: "id") as? Int
 		movieDetailsController.movieID = id ?? 0
+		movieDetailsController.hideDetail = true
 		self.navigationController?.pushViewController(movieDetailsController, animated: true)
 	}
 }

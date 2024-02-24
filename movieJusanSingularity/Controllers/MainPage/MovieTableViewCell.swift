@@ -69,7 +69,7 @@ final class MovieTableViewCell: UITableViewCell {
 	func configureForSearch(_ model: SearchResult) {
 		movieTitleLabel.text = model.title
 		let urlString = "https://image.tmdb.org/t/p/w200" + (
-			model.posterPath)
+			model.posterPath ?? "")
 		let url = URL(string: urlString)!
 		movieImageView.kf.setImage(with: url)
 	}
