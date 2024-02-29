@@ -10,22 +10,22 @@ import CoreData
 
 final class SearchViewController: UIViewController, UISearchControllerDelegate {
 	
+	// MARK: - Properties
+	var movie = Int()
+
 	// MARK: - Private properties
 	private var networkManager = NetworkManager.shared
-	
-	// MARK: - Private properties
 	
 	private var searchMovies: [SearchResult] = [] {
 		didSet {
 			self.movieTableView.reloadData()
-	//		hundleEmptyStateView(show: false)
+			hundleEmptyStateView()
 		}
 	}
 	
-	private var recomendedMovies: [RecommendedMovie] = [] {
+	private var recomendedMovies: [MovieResult] = [] {
 		didSet {
 			self.recomendedTableView.reloadData()
-		//	hundleEmptyStateView(show: false)
 		}
 	}
 	
@@ -89,12 +89,15 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 		setupConstraints()
 	
 		movieTableView.isHidden = true
-	
-		loadRecomendedMovies()
 	}
 	
-	private func loadRecomendedMovies() {
-		var movie = Int()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		loadRecomendedMovie()
+		self.tabBarController?.tabBar.isHidden = false
+	}
+	
+	private func movieID() -> Int {
 		let movieFromMainVC = UserDefaults.standard.integer(forKey: "movieFromMainvc")
 		let favouriteMovie = UserDefaults.standard.integer(forKey: "favouriteMovies")
 		let watchListMovie = UserDefaults.standard.integer(forKey: "moviesFromWatchList")
@@ -106,16 +109,22 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 		} else {
 			movie = movieFromMainVC
 		}
-		
-		networkManager.recomendedMovie(movieId: movie) { [weak self] result in
+		return movie
+	}
+	
+	private func loadRecomendedMovie() {
+
+		networkManager.recomendedMovie(movieId: movieID()) { [weak self] result in
 			self?.recomendedMovies = result
+			print(result.count)
 		}
 	}
+	
 	// MARK: - Setup Views
 	private func setupViews() {
 		view.backgroundColor = .white
 		
-		[titleLabel, searchBar, recomendedLabel, movieTableView, recomendedTableView].forEach {
+		[titleLabel, searchBar, recomendedLabel, emptyStateView, movieTableView, recomendedTableView].forEach {
 			view.addSubview($0)
 		}
 	}
@@ -149,14 +158,18 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 			make.leading.trailing.bottom.equalToSuperview()
 		}
 		
-//		emptyStateView.snp.makeConstraints { make in
-//			make.edges.equalTo(movieTableView)
-//		}
+		emptyStateView.snp.makeConstraints { make in
+			make.edges.equalTo(movieTableView)
+		}
 	}
 	// MARK: - Private
 	
-	private func hundleEmptyStateView(show: Bool) {
-		emptyStateView.isHidden = !show
+	private func hundleEmptyStateView() {
+		if searchMovies.count <= 0 {
+			emptyStateView.isHidden = false
+		} else {
+			emptyStateView.isHidden = true
+		}
 	}
 }
 
@@ -167,14 +180,16 @@ extension SearchViewController: UISearchBarDelegate {
 		
 		guard let query = searchBar.text,
 					!query.trimmingCharacters(in: .whitespaces).isEmpty,
-					query.trimmingCharacters(in: .whitespaces).count >= 2
+					query.trimmingCharacters(in: .whitespaces).count >= 1
 		else {
+			self.movieTableView.isHidden = true
+			self.recomendedLabel.isHidden = false
+			self.recomendedTableView.isHidden = false
 			return
 		}
 		
 		networkManager.searchMovie(with: query) { [weak self] result in
 			switch result {
-				
 			case .success(let result):
 				self?.searchMovies = result
 				self?.movieTableView.isHidden = false
@@ -232,3 +247,6 @@ extension SearchViewController: UITableViewDelegate {
 		}
 	}
 }
+//969492
+//1072790
+//1096197

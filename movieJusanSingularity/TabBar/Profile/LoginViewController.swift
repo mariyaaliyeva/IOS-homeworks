@@ -155,7 +155,7 @@ final class LoginViewController: UIViewController {
 	// MARK: - SetupViews
 	
 	private func setupViews() {
-		[titleLabel, loginTextField, passwordTextField,errorLabel, loginButton].forEach {
+		[titleLabel, loginTextField, passwordTextField, errorLabel, loginButton].forEach {
 			view.addSubview($0)
 		}
 	}
@@ -166,8 +166,7 @@ final class LoginViewController: UIViewController {
 		
 		titleLabel.snp.makeConstraints { make in
 			make.top.equalTo(view.safeAreaLayoutGuide).offset(150)
-			make.leading.equalTo(view.snp.leading).offset(16)
-			make.trailing.equalTo(view.snp.trailing).offset(-16)
+			make.leading.trailing.equalToSuperview().inset(16)
 		}
 		
 		loginTextField.snp.makeConstraints { make in

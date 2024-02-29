@@ -73,10 +73,12 @@ final class CastCollectionViewCell: UICollectionViewCell {
 	// MARK: - Setup Views
 	private func setupViews() {
 		backgroundColor = .clear
-		contentView.addSubview(photoImageView)
-		contentView.addSubview(namesStack)
-		namesStack.addArrangedSubview(actorNameLabel)
-		namesStack.addArrangedSubview(heroNameLabel)
+		[photoImageView, namesStack].forEach {
+			contentView.addSubview($0)
+		}
+		[actorNameLabel, heroNameLabel].forEach {
+			namesStack.addArrangedSubview($0)
+		}
 	}
 	
 	// MARK: - Setup Constraints

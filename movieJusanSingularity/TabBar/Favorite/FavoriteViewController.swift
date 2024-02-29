@@ -60,11 +60,7 @@ final class FavoriteViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if favouriteMovies.count <= 0 {
-			hundleEmptyStateView(show: true)
-		} else {
-			hundleEmptyStateView(show: false)
-		}
+		hundleEmptyStateView()
 	}
 	
 	// MARK: - Core
@@ -111,10 +107,15 @@ final class FavoriteViewController: UIViewController {
 	
 	// MARK: - Private
 	
-	private func hundleEmptyStateView(show: Bool) {
-		emptyStateView.isHidden = !show
+	private func hundleEmptyStateView() {
+		if favouriteMovies.count <= 0 {
+			emptyStateView.isHidden = false
+		} else {
+			emptyStateView.isHidden = true
+		}
 	}
 }
+
 // MARK: - UITableViewDataSource
 extension FavoriteViewController: UITableViewDataSource {
 	

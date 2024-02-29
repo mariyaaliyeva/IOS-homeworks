@@ -30,12 +30,12 @@ final class MainTabBarViewController: UITabBarController {
 		UINavigationController(rootViewController: LoginViewController()),
 	]
 	
-	private var allViewController1 = [
+	private var loggedControllers = [
 		UINavigationController(rootViewController: MainViewController()),
 		UINavigationController(rootViewController: FavoriteViewController()),
-		WatchListViewController(),
-		SearchViewController(),
-		ProfileViewController()
+		UINavigationController(rootViewController: WatchListViewController()),
+		UINavigationController(rootViewController: SearchViewController()),
+		UINavigationController(rootViewController: ProfileViewController())
 	]
 	
 	// MARK: - Lifecycle
@@ -53,7 +53,7 @@ final class MainTabBarViewController: UITabBarController {
 		tabBar.backgroundColor = .white
 		
 		if isLogin == true {
-			setViewControllers(allViewController1, animated: false)
+			setViewControllers(loggedControllers, animated: false)
 		} else {
 			setViewControllers(allViewController, animated: false)
 		}

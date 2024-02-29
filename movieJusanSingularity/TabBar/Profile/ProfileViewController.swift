@@ -12,14 +12,13 @@ final class ProfileViewController: UIViewController {
 	
 	// MARK: - Props
 	
-	weak var activeImageView:UIImageView? = nil
+	weak var activeImageView: UIImageView? = nil
 	
 	// MARK: - UI
 	
 	private lazy var backImageView: UIImageView = {
 		let image = UIImageView()
 		image.contentMode = .scaleAspectFill
-		image.backgroundColor = .gray
 		image.clipsToBounds = true
 		return image
 	}()
@@ -130,9 +129,7 @@ final class ProfileViewController: UIViewController {
 	// MARK: - SetupViews
 	
 	private func setupViews() {
-		[backImageView].forEach {
-			view.addSubview($0)
-		}
+		view.addSubview(backImageView)
 		
 		[photoImageView, titleInBackImageLabel].forEach {
 			backImageView.addSubview($0)

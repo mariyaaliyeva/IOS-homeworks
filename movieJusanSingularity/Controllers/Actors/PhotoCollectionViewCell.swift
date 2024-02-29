@@ -76,7 +76,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 			make.width.equalTo(63)
 		}
 		countLabel.snp.makeConstraints { make in
-			make.centerX.centerY.equalToSuperview()
+			make.center.equalToSuperview()
 		}
 	}
 }

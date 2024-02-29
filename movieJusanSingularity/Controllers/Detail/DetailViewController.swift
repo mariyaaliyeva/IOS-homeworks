@@ -558,11 +558,8 @@ final class DetailViewController: BaseViewController {
 	
 	@objc
 	func imageTapped() {
-		//    https://www.youtube.com/watch?v=
-		//    https://api.themoviedb.org/3/movie/466420/videos?api_key=e516e695b99f3043f08979ed2241b3db
-		
 		networkManager.fetchVideos(id: movieID) { videos in
-			print(self.movieID)
+		
 			let youtubeVideos = videos.filter { video in
 				if let site = video.site {
 					site.contains("YouTube")
@@ -585,7 +582,7 @@ final class DetailViewController: BaseViewController {
 	func imdbTapped() {
 		
 		networkManager.fetchImdb(id: movieID) { videos in
-			
+			print("IMDB")
 			let urlString = "https://www.imdb.com/title/" + "\(videos.imdbID)"
 			if let url = URL(string: urlString) {
 				UIApplication.shared.open(url)
@@ -597,7 +594,7 @@ final class DetailViewController: BaseViewController {
 	func facebookTapped() {
 		
 		networkManager.fetchImdb(id: movieID) { videos in
-			
+			print("Facebook")
 			let urlString = "https://www.facebook.com/" + "\(String(describing: videos.facebookID))"
 			if let url = URL(string: urlString) {
 				UIApplication.shared.open(url)

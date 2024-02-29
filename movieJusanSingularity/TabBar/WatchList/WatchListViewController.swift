@@ -21,7 +21,7 @@ final class WatchListViewController: UIViewController {
 	private var titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Watch List"
-		label.font = UIFont.systemFont(ofSize: 42, weight: .bold)
+		label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
 		return label
 	}()
 	
@@ -60,11 +60,7 @@ final class WatchListViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if moviesFromWatchList.count <= 0 {
-			hundleEmptyStateView(show: true)
-		} else {
-			hundleEmptyStateView(show: false)
-		}
+		hundleEmptyStateView()
 	}
 	
 	// MARK: - Core
@@ -82,9 +78,13 @@ final class WatchListViewController: UIViewController {
 	}
 	
 	// MARK: - Private
-	
-	private func hundleEmptyStateView(show: Bool) {
-		emptyStateView.isHidden = !show
+
+	private func hundleEmptyStateView() {
+		if moviesFromWatchList.count <= 0 {
+			emptyStateView.isHidden = false
+		} else {
+			emptyStateView.isHidden = true
+		}
 	}
 	
 	// MARK: - Setup Views
@@ -141,6 +141,7 @@ extension WatchListViewController: UITableViewDelegate {
 		let id = movie.value(forKeyPath: "id") as? Int
 		movieDetailsController.movieID = id ?? 0
 		movieDetailsController.hideDetail = true
+		print(id)
 		self.navigationController?.pushViewController(movieDetailsController, animated: true)
 	}
 }

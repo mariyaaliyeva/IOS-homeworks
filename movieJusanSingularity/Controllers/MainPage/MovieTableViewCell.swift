@@ -74,7 +74,7 @@ final class MovieTableViewCell: UITableViewCell {
 		movieImageView.kf.setImage(with: url)
 	}
 	
-	func configureForRecomended(_ model: RecommendedMovie) {
+	func configureForRecomended(_ model: MovieResult) {
 		movieTitleLabel.text = model.title
 		let urlString = "https://image.tmdb.org/t/p/w200" + (
 			model.posterPath)

@@ -155,6 +155,9 @@ final class MainViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		animate()
+		let firstItem:IndexPath = IndexPath(row: 0, section: 0)
+		genresCollectionView.selectItem(at: firstItem, animated: false, scrollPosition: .left)
+		themeCollectionView.selectItem(at: firstItem, animated: false, scrollPosition: .left)
 	}
 	
 	// MARK: - Methods
@@ -459,7 +462,6 @@ extension MainViewController: UITableViewDelegate {
 		let movieDetailsController = DetailViewController()
 		let movie = movie[indexPath.row]
 		movieDetailsController.movieID = movie.id
-		print(movie.id)
 		self.navigationController?.pushViewController(movieDetailsController, animated: true)
 	}
 }

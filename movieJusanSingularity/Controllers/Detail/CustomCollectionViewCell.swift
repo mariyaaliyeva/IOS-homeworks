@@ -65,7 +65,7 @@ final class CustomCollectionViewCell: UICollectionViewCell {
 	func configureCustomTitle(with font: UIFont) {
 		customCollectionLabel.font = font
 	}
-	
+
 	// MARK: - Setup Views
 	private func setupViews() {
 		backgroundColor = #colorLiteral(red: 0.1011425927, green: 0.2329770327, blue: 0.9290834069, alpha: 1)
