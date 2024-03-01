@@ -570,32 +570,45 @@ final class NetworkManager {
 		}
 	}
 	
-	func recomendedMovie(movieId: Int, completion: @escaping ([MovieResult]) -> Void) {
+	func recomendedMovie(movieId: Int, completion: @escaping (APIResult<[RecommendedResult]>) -> Void) {
 		
 		var components = urlComponents
 		components.path = "/3/movie/\(movieId)/recommendations"
-	
+		
 		guard let requestUrl = components.url else {
 			return
 		}
 		print(requestUrl)
-
-		AF.request(requestUrl, headers: headers).responseData { response in
-			guard let data = response.data else {
-				print("Error: Did not receive data")
+		
+		let task = session.dataTask(with: requestUrl) { data, response, error in
+			print(data?.prettyJSON)
+			guard error == nil else {
+				print("Error: error calling GET \(String(describing: error))")
+				return
+			}
+			
+			guard let data = data else {
+				print("Error: Did not recieve data")
+				return
+			}
+			
+			guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+				print("Error: HTTP request failed ")
 				return
 			}
 			
 			do {
-				let recommendedResult = try JSONDecoder().decode(Movie.self, from: data)
+				let recommendedResult = try JSONDecoder().decode(Recommended.self, from: data)
 				DispatchQueue.main.async {
-					completion(recommendedResult.results)
+					completion(.success(recommendedResult.results))
 				}
-			} catch {
+			}	catch {
 				DispatchQueue.main.async {
-					completion([])
+					print(error.localizedDescription)
+					completion(.failure(.networkFail))
 				}
 			}
 		}
+		task.resume()
 	}
 }

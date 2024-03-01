@@ -23,7 +23,7 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 		}
 	}
 	
-	private var recomendedMovies: [MovieResult] = [] {
+	private var recomendedMovies: [RecommendedResult] = [] {
 		didSet {
 			self.recomendedTableView.reloadData()
 		}
@@ -115,8 +115,18 @@ final class SearchViewController: UIViewController, UISearchControllerDelegate {
 	private func loadRecomendedMovie() {
 
 		networkManager.recomendedMovie(movieId: movieID()) { [weak self] result in
-			self?.recomendedMovies = result
-			print(result.count)
+			switch result {
+			case .success(let response):
+				self?.recomendedMovies = response
+			case .failure(.unknown):
+				print("unknown")
+			case .failure(.networkFail):
+				print("networkFail")
+			case .failure(.incorectJson):
+				print("incorectJson")
+			case .failure(.failedWith(reason: let reason)):
+				print(reason)
+			}
 		}
 	}
 	
@@ -209,6 +219,7 @@ extension SearchViewController: UITableViewDataSource {
 		if tableView == movieTableView {
 			return searchMovies.count
 		} else {
+			print(recomendedMovies.count)
 			return recomendedMovies.count
 		}
 	}
@@ -242,7 +253,7 @@ extension SearchViewController: UITableViewDelegate {
 		} else {
 			let movieDetailsController = DetailViewController()
 			let movie = recomendedMovies[indexPath.row]
-			movieDetailsController.movieID = movie.id
+			movieDetailsController.movieID = movie.id!
 			self.navigationController?.pushViewController(movieDetailsController, animated: true)
 		}
 	}

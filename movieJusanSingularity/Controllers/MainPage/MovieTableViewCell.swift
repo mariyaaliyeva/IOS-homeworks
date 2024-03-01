@@ -74,12 +74,17 @@ final class MovieTableViewCell: UITableViewCell {
 		movieImageView.kf.setImage(with: url)
 	}
 	
-	func configureForRecomended(_ model: MovieResult) {
+	func configureForRecomended(_ model: RecommendedResult) {
 		movieTitleLabel.text = model.title
-		let urlString = "https://image.tmdb.org/t/p/w200" + (
-			model.posterPath)
-		let url = URL(string: urlString)!
-		movieImageView.kf.setImage(with: url)
+		
+		if model.posterPath != nil {
+			let urlString = "https://image.tmdb.org/t/p/w200" + (
+				model.posterPath!)
+			let url = URL(string: urlString)!
+			movieImageView.kf.setImage(with: url)
+		} else {
+			movieImageView.image = UIImage(named: "no_image")
+		}
 	}
 	
 	func configureFavouriteMovie(with title: String, and imagePath: String) {
