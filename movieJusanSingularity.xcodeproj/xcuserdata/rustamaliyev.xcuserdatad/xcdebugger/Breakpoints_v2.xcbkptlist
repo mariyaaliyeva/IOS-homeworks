@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "78830EB6-DC82-40D9-91D4-39307D9DCD30"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02B77702-786D-4924-98CA-650740DA19ED"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "movieJusanSingularity/TabBar/WatchList/WatchListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E98E957-A5E2-42D5-B011-64216F64A341"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "movieJusanSingularity/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "584"
+            endingLineNumber = "584"
+            landmarkName = "recomendedMovie(movieId:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "340">
+               </Location>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "392">
+               </Location>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "380">
+               </Location>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  uuid = "5E98E957-A5E2-42D5-B011-64216F64A341 - 99eba54b610e3ed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "584"
+                  endingLineNumber = "584"
+                  offsetFromSymbolStart = "564">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A0CF36C-2C47-4106-A17F-BCA6B034FA93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "movieJusanSingularity/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
+            landmarkName = "recomendedMovie(movieId:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A0CF36C-2C47-4106-A17F-BCA6B034FA93 - 99eba54b610e3c25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "601"
+                  endingLineNumber = "601"
+                  offsetFromSymbolStart = "1452">
+               </Location>
+               <Location
+                  uuid = "9A0CF36C-2C47-4106-A17F-BCA6B034FA93 - 99eba54b610e3c25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in movieJusanSingularity.NetworkManager.recomendedMovie(movieId: Swift.Int, completion: (movieJusanSingularity.APIResult&lt;Swift.Array&lt;movieJusanSingularity.RecommendedResult&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "movieJusanSingularity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rustamaliyev/Desktop/IOS-homeworks/movieJusanSingularity/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "601"
+                  endingLineNumber = "601"
+                  offsetFromSymbolStart = "1624">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
