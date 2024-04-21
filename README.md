@@ -10,6 +10,16 @@ UIKit MovieDB prototype app built with Xcode using the TMDb API.
 * Clone the Repository
 * Get the API Key from https://developers.themoviedb.org/3/
 * Put API Key in AppDelegate
+  
+### Features
+
+* Sign In
+* View Your Profile
+* Search Movies
+* Recommended
+* Genres
+* Favourites Movies - Core Data
+* Watch List - Core Data
 
 ### Demo
 
